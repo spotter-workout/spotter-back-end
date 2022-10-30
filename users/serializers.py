@@ -1,7 +1,8 @@
 from dataclasses import field
 import os
 from rest_framework import serializers
-from spotter-back-end.app.settings import SALT
+from app.settings import SALT
+
 from .models import User
 from django.contrib.auth.hashers import make_password
 
