@@ -1,6 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .models import User
 from users.serializers import UserSerializer
+from rest_framework.exceptions import AuthenticationFailed
+from django.contrib.auth.hashers import check_password
+import jwt
 
 # Create your views here.
 
@@ -11,3 +15,29 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+
+class LoginView(APIView):
+    def post(self, request):
+        username = request.data["username"]
+        password = request.data["password"]
+
+        user = User.objects.filter(username=username).first()
+
+        if user is None:
+            raise AuthenticationFailed("404 - User does not exist")
+
+        if not user.check_password(password):
+            raise AuthenticationFailed("401 - Incorrect password")
+
+        payload = {
+            "username": user.username,
+        }
+
+        token = jwt.encode(payload, "secret", algorithm="HS256")
+
+        response = Response()
+
+        response.data = {"jwt": token}
+
+        return response
