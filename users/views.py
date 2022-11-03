@@ -5,6 +5,7 @@ from users.serializers import UserSerializer
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.hashers import check_password
 import jwt
+import os
 
 # Create your views here.
 
@@ -34,7 +35,7 @@ class LoginView(APIView):
             "username": user.username,
         }
 
-        token = jwt.encode(payload, "secret", algorithm="HS256")
+        token = jwt.encode(payload, os.getenv("JWT_SECRET"), algorithm="HS256")
 
         response = Response()
 
