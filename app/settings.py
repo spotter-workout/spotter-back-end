@@ -130,5 +130,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "users.User"
+
 # SALT password
 SALT = "4d52f696-2a4a-4888-8355-8340d186d5b9"
