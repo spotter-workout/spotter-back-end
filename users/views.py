@@ -7,7 +7,17 @@ from django.contrib.auth.hashers import check_password
 import jwt, datetime
 import os
 
+
+from django.http import JsonResponse
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
+class HelloWorld(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        content = {"message": "Hello, world!"}
+        return Response(content)
 
 
 class RegisterView(APIView):
