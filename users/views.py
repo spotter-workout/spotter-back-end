@@ -31,8 +31,6 @@ class RegisterView(APIView):
         serializer.save()
         return Response({"message": "success"})
 
-
-class LoginView(APIView):
     """User login view"""
 
     def post(self, request):
