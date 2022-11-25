@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import RegisterView, LoginView, HelloWorld
+from .views import RegisterView, HelloWorld
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
