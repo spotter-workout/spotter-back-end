@@ -46,12 +46,15 @@ INSTALLED_APPS = [
     "users",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
+    "coreapi",
+    "drf_yasg",
 ]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
 
 MIDDLEWARE = [
