@@ -13,6 +13,8 @@ from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class HelloWorld(APIView):
+    """A simple hello world response json response for testing"""
+
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -21,6 +23,8 @@ class HelloWorld(APIView):
 
 
 class RegisterView(APIView):
+    """Creates a new user"""
+
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -29,6 +33,8 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
+    """User login view"""
+
     def post(self, request):
         username = request.data["username"]
         password = request.data["password"]
